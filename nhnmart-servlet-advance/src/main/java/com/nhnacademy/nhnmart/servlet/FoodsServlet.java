@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "foodsServlet", urlPatterns = "/foods")
-public class foodsServlet extends HttpServlet {
+public class FoodsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
         throws ServletException, IOException {
@@ -20,8 +20,6 @@ public class foodsServlet extends HttpServlet {
             ArrayList<Food> foods = (ArrayList<Food>) getServletContext().getAttribute("foodStand");
 
             resp.setContentType("text/html");
-            out.println("<!DOCTYPE html>");
-            out.println("<html lang=\"en\">");
             printFoodStand(out, foods);
             printBaksetForm(out, foods);
         }

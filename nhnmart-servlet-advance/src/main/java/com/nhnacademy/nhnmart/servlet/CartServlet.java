@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @WebServlet(name = "cartServlet", urlPatterns = "/cart")
-public class cartServlet extends HttpServlet {
+public class CartServlet extends HttpServlet {
     private ArrayList<Food> foodStand;
     private ArrayList<Food> basket = new ArrayList<>();
     private int totalPrice = 0;

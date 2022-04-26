@@ -64,7 +64,7 @@ public class LoginServlet extends HttpServlet {
 
             resp.sendRedirect("/login");
         } else {
-            resp.sendRedirect("/login.html");
+            resp.sendRedirect("/loginForm.html");
         }
     }
 }

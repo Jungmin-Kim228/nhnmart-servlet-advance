@@ -16,6 +16,9 @@ public class FoodsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
         throws ServletException, IOException {
 
+//        int count = (int) getServletContext().getAttribute("counter");
+//        getServletContext().setAttribute("counter", ++count);
+
         try (PrintWriter out = resp.getWriter()) {
             ArrayList<Food> foods = (ArrayList<Food>) getServletContext().getAttribute("foodStand");
 

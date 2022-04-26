@@ -3,7 +3,6 @@ package com.nhnacademy.nhnmart.servlet;
 import com.nhnacademy.nhnmart.domain.Food;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;

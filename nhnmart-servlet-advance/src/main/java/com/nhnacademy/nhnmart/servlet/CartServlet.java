@@ -20,6 +20,21 @@ public class CartServlet extends HttpServlet {
     private int totalPrice = 0;
 
     @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+        throws ServletException, IOException {
+
+//        int count = (int) getServletContext().getAttribute("counter");
+//        getServletContext().setAttribute("counter", ++count);
+
+        try (PrintWriter out = resp.getWriter()) {
+            showFoodInBasket(out);
+            out.println("[Total: " + this.totalPrice + "]");
+        } catch (IOException e) {
+            log.error("", e);
+        }
+    }
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
         throws ServletException, IOException {
 
@@ -36,18 +51,6 @@ public class CartServlet extends HttpServlet {
         getServletContext().setAttribute("foodStand", foodStand);
 
         resp.sendRedirect("/cart");
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-        throws ServletException, IOException {
-
-        try (PrintWriter out = resp.getWriter()) {
-            showFoodInBasket(out);
-            out.println("[Total: " + this.totalPrice + "]");
-        } catch (IOException e) {
-            log.error("", e);
-        }
     }
 
     private void showFoodInBasket(PrintWriter out) {

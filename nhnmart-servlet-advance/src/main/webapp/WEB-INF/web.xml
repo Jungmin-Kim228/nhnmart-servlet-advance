@@ -8,8 +8,4 @@
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
 
-    <context-param>
-        <param-name>counterFileName</param-name>
-        <param-value>counter.dat</param-value>
-    </context-param>
 </web-app>

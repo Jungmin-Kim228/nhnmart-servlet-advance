@@ -1,4 +1,4 @@
-package com.nhnacademy.domain;
+package com.nhnacademy.nhnmart.domain;
 
 public class Food {
     private final String name;

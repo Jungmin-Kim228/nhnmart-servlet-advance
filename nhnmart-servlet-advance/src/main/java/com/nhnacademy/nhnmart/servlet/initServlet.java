@@ -1,17 +1,19 @@
-package com.nhnacademy.servlet;
+package com.nhnacademy.nhnmart.servlet;
 
-import com.nhnacademy.domain.Food;
+import com.nhnacademy.nhnmart.domain.Food;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@WebServlet(name = "initServlet", urlPatterns = "/init")
 public class initServlet extends HttpServlet {
     private final List<Food> foodStand = new ArrayList<>();
 

@@ -1,14 +1,16 @@
-package com.nhnacademy.servlet;
+package com.nhnacademy.nhnmart.servlet;
 
-import com.nhnacademy.domain.Food;
+import com.nhnacademy.nhnmart.domain.Food;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@WebServlet(name = "foodsServlet", urlPatterns = "/foods")
 public class foodsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)

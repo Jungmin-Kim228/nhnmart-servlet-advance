@@ -18,5 +18,6 @@ public class WebAppInitializer implements ServletContainerInitializer {
         throws ServletException {
         servletContext.setInitParameter("foodStand", "onion,1000,2,egg,2000,5,green_onion,500,10,apple,2000,20");
         servletContext.setInitParameter("counterFileName", "counter.dat");
+        servletContext.setInitParameter("counter", "0");
     }
 }

@@ -17,13 +17,37 @@ public class foodsServlet extends HttpServlet {
         try (PrintWriter out = resp.getWriter()) {
             ArrayList<Food> foods = (ArrayList<Food>) getServletContext().getAttribute("foodStand");
 
-            for (Food f : foods) {
-                out.println("["+f.getName()+"]");
-                out.println("- price: "+f.getPrice());
-                out.println("- amount: "+f.getAmount());
-                out.println();
-            }
-            out.println("Please move to /basket.html");
+            resp.setContentType("text/html");
+            out.println("<!DOCTYPE html>");
+            out.println("<html lang=\"en\">");
+            printFoodStand(out, foods);
+            printBaksetForm(out, foods);
         }
+    }
+
+    private void printFoodStand(PrintWriter out, ArrayList<Food> foods) {
+        out.println("<h1>FoodStand</h1>");
+        out.println("<ol>");
+        for (Food f : foods) {
+            out.println("<li>"+f.getName()+"</li>");
+            out.println("<ul>");
+            out.println("<li>"+f.getPrice()+"won</li>");
+            out.println("<li>"+f.getAmount()+"</li>");
+            out.println("</ul>");
+        }
+        out.println("</ol>");
+    }
+
+
+    private void printBaksetForm(PrintWriter out, ArrayList<Food> foods) {
+        out.println("<hr>");
+        out.println("<h1>Pick Foods You Want</h1>");
+        out.println("<form method=\"post\" action=\"/cart\">");
+        for (Food f : foods) {
+            out.println("<input type=\"number\" name=\"food\"/> "+f.getName());
+            out.println("<br><br>");
+        }
+        out.println("<input type=\"submit\"/>");
+        out.println("</form>");
     }
 }

@@ -5,10 +5,6 @@ e
 5src/main/java/com/nhnacademy/nhnmart/domain/Food.java,f\3\f3d1aca080cb5262520879c8a99818a33ab68b8e
 j
 :src/main/java/com/nhnacademy/nhnmart/domain/FoodStand.java,6\8\684519771a7e377a07e1e81baba93a82d14b98f8
-n
->src/main/java/com/nhnacademy/nhnmart/servlet/FoodsServlet.java,4\4\44a703812e6f65947d3fc60700b59f5ee3c94a70
-I
-src/main/webapp/index.jsp,8\e\8e6d3b70c9f5b02570779b0441540d45eceb0ded
 O
 src/main/webapp/WEB-INF/web.xml,2\e\2e22b6edd746fa3dc40ad7276c87c8d87d72a392
 n

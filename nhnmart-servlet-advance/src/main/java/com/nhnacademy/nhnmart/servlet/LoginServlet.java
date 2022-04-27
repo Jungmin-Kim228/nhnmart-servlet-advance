@@ -3,6 +3,7 @@ package com.nhnacademy.nhnmart.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Objects;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;

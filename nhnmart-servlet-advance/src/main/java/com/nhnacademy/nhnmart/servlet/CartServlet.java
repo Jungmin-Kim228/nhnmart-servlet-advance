@@ -1,6 +1,7 @@
 package com.nhnacademy.nhnmart.servlet;
 
 import com.nhnacademy.nhnmart.domain.Food;
+import com.nhnacademy.nhnmart.domain.FoodStand;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -15,16 +16,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @WebServlet(name = "cartServlet", urlPatterns = "/cart")
 public class CartServlet extends HttpServlet {
-    private ArrayList<Food> foodStand;
+    private FoodStand foodStand;
     private ArrayList<Food> basket = new ArrayList<>();
     private int totalPrice = 0;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
         throws ServletException, IOException {
-
-//        int count = (int) getServletContext().getAttribute("counter");
-//        getServletContext().setAttribute("counter", ++count);
 
         try (PrintWriter out = resp.getWriter()) {
             showFoodInBasket(out);
@@ -39,7 +37,7 @@ public class CartServlet extends HttpServlet {
         throws ServletException, IOException {
 
         int idx = 0;
-        this.foodStand = (ArrayList<Food>) getServletContext().getAttribute("foodStand");
+        this.foodStand = (FoodStand) getServletContext().getAttribute("foodStand");
         int[] foodAmounts = checkAmountValid(req, resp, idx);
 
         if (foodAmounts == null) {
@@ -72,7 +70,7 @@ public class CartServlet extends HttpServlet {
 
         for (String foodValue : received) {
             foodAmounts[idx] = Optional.of(Integer.parseInt(foodValue)).orElse(0);
-            if (foodAmounts[idx] > this.foodStand.get(idx).getAmount() || foodAmounts[idx] < 0) {
+            if (foodAmounts[idx] > this.foodStand.getFoods().get(idx).getAmount() || foodAmounts[idx] < 0) {
                 resp.setStatus(417);
                 resp.sendError(417, "Out of amount");
                 return null;
@@ -83,7 +81,7 @@ public class CartServlet extends HttpServlet {
     }
 
     private void initBasketAndTotal(int[] foodAmounts, int idx) {
-        for (Food food : this.foodStand) {
+        for (Food food : this.foodStand.getFoods()) {
             this.basket.add(new Food(food.getName(), food.getPrice(), foodAmounts[idx]));
             food.setAmount(food.getAmount()-foodAmounts[idx]);
             this.totalPrice += foodAmounts[idx] * food.getPrice();

@@ -1,6 +1,7 @@
 package com.nhnacademy.nhnmart.servlet;
 
 import com.nhnacademy.nhnmart.domain.Food;
+import com.nhnacademy.nhnmart.domain.FoodStand;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -16,22 +17,19 @@ public class FoodsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
         throws ServletException, IOException {
 
-//        int count = (int) getServletContext().getAttribute("counter");
-//        getServletContext().setAttribute("counter", ++count);
-
         try (PrintWriter out = resp.getWriter()) {
-            ArrayList<Food> foods = (ArrayList<Food>) getServletContext().getAttribute("foodStand");
+            FoodStand foodStand = (FoodStand) getServletContext().getAttribute("foodStand");
 
             resp.setContentType("text/html");
-            printFoodStand(out, foods);
-            printBaksetForm(out, foods);
+            printFoodStand(out, foodStand);
+            printBaksetForm(out, foodStand);
         }
     }
 
-    private void printFoodStand(PrintWriter out, ArrayList<Food> foods) {
+    private void printFoodStand(PrintWriter out, FoodStand foods) {
         out.println("<h1>FoodStand</h1>");
         out.println("<ol>");
-        for (Food f : foods) {
+        for (Food f : foods.getFoods()) {
             out.println("<li>"+f.getName()+"</li>");
             out.println("<ul>");
             out.println("<li>"+f.getPrice()+"won</li>");
@@ -42,11 +40,11 @@ public class FoodsServlet extends HttpServlet {
     }
 
 
-    private void printBaksetForm(PrintWriter out, ArrayList<Food> foods) {
+    private void printBaksetForm(PrintWriter out, FoodStand foods) {
         out.println("<hr>");
         out.println("<h1>Pick Foods You Want</h1>");
         out.println("<form method=\"post\" action=\"/cart\">");
-        for (Food f : foods) {
+        for (Food f : foods.getFoods()) {
             out.println("<input type=\"number\" name=\"food\"/> "+f.getName());
             out.println("<br><br>");
         }

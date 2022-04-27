@@ -43,12 +43,14 @@ public class LoginServlet extends HttpServlet {
         if (Objects.isNull(session)) {
             resp.sendRedirect("/loginForm.html");
         } else {
-            PrintWriter out = resp.getWriter();
-            out.println("Login Success");
-            out.println("User: " + session.getAttribute("id"));
-
-            out.println("<a href='/foods'>/foods</a>");
-            out.println("<a href='/logout'>/logout</a>");
+            String redirect = String.valueOf(req.getServletContext().getAttribute("redirect"));
+            resp.sendRedirect(redirect);
+//            PrintWriter out = resp.getWriter();
+//            out.println("Login Success");
+//            out.println("User: " + session.getAttribute("id"));
+//
+//            out.println("<a href='/foods'>/foods</a>");
+//            out.println("<a href='/logout'>/logout</a>");
         }
     }
 

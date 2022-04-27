@@ -52,6 +52,7 @@ public class LoginCheckFilter implements Filter {
         } else {
             HttpSession session = ((HttpServletRequest) servletRequest).getSession(false);
             if (Objects.isNull(session)) {
+                servletRequest.getServletContext().setAttribute("redirect", requestUri);
                 ((HttpServletResponse) servletResponse).sendRedirect("/login");
                 filterChain.doFilter(servletRequest, servletResponse);
             } else {

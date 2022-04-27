@@ -24,9 +24,11 @@ public class CartServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
         throws ServletException, IOException {
 
+        resp.setContentType("text/html");
         try (PrintWriter out = resp.getWriter()) {
             showFoodInBasket(out);
-            out.println("[Total: " + this.totalPrice + "]");
+            out.println("[Total: " + this.totalPrice + "]<br>");
+            out.println("<a href='/logout'>logout</a>");
         } catch (IOException e) {
             log.error("", e);
         }
@@ -52,16 +54,15 @@ public class CartServlet extends HttpServlet {
     }
 
     private void showFoodInBasket(PrintWriter out) {
-        out.println("[Your Basket]");
+        out.println("<h1>[Your Basket]</h1><br>");
         for (Food food : this.basket) {
             if (food.getAmount() != 0) {
-                out.println("name: " + food.getName());
-                out.println("amount: " + food.getAmount());
-                out.println("price: " + food.getPrice());
-                out.println("--------------------");
+                out.println("name: " + food.getName()+"<br>");
+                out.println("amount: " + food.getAmount()+"<br>");
+                out.println("price: " + food.getPrice()+"<br>");
+                out.println("--------------------<br>");
             }
         }
-        out.println();
     }
 
     private int[] checkAmountValid(HttpServletRequest req, HttpServletResponse resp, int idx) throws IOException {
